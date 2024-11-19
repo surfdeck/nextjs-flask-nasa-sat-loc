@@ -7,7 +7,7 @@ import axios from "axios";
   const availableSatellites = [
     { name: "ace", description: "The Advanced Composition Explorer (ACE) observes particles of solar, interstellar, interplanetary, and galactic origins." },
     { name: "wind", description: "The WIND spacecraft studies the solar wind and its impact on Earth's magnetosphere." },
-    { name: "More Satellites", description: "coming soon: GOES-17 and GOES-16. You can try but it's buggy." },
+    { name: "more coming soon", description: "coming soon: GOES-17 and GOES-16. You can try but it's buggy." },
 
   ];
 
@@ -99,7 +99,7 @@ import axios from "axios";
             Visualize real-time and historical satellite trajectories in a dynamic 3D environment.
           </p>
           <div className="mb-4">
-            <label className="block text-gray-400">Observatories:</label>
+            <label className="block text-gray-400">Satellites:</label>
             <input
               type="text"
               value={observatories}
@@ -108,7 +108,7 @@ import axios from "axios";
               className="p-2 bg-gray-900 text-white border-gray-700 rounded w-full md:w-1/2"
             />
             <div className="mt-2">
-              <strong className="text-gray-300">Available Satellites:</strong>
+              <strong className="text-gray-300">Try these!</strong>
               <ul className="text-gray-400 list-disc list-inside">
                 {availableSatellites.map((satellite, index) => (
                   <li key={index}>{satellite.name}</li>
