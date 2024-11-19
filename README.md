@@ -67,6 +67,7 @@ Accepts parameters such as observatories, start_time, end_time, and coordinate_s
 Returns vertices and labels for visualization.
 Example Request
 curl -X GET "http://localhost:5328/api/get-satellite-locations?observatories=ace,wind&start_time=20240101T000000Z&end_time=20240101T010000Z&coordinate_system=GSE"
+
 Technologies Used
 
 Frontend
