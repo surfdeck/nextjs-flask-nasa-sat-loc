@@ -47,7 +47,7 @@ import axios from "axios";
     setData({ vertices: [], faces: [], labels: [] });
 
     try {
-      const response = await axios.get("http://localhost:5328/api/get-satellite-locations", {
+      const response = await axios.get("/api/get-satellite-locations", {
         params: {
           observatories,
           start_time: formattedStartTime,
