@@ -9,8 +9,6 @@ load_dotenv()
 
 # Flask application setup
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
-logging.basicConfig(level=logging.DEBUG)  # Set to DEBUG for detailed logs
 
 # Base URL for NASA SSC Web Services
 NASA_SSC_API_URL = 'https://sscweb.gsfc.nasa.gov/WS/sscr/2'
