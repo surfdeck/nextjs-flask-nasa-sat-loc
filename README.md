@@ -1,78 +1,95 @@
-<p align="center">
-  <a href="https://nextjs-flask-starter.vercel.app/">
-    <img src="https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" height="96">
-    <h3 align="center">Next.js Flask Starter</h3>
-  </a>
-</p>
+NASA Goddard Space Flight Center App
 
-<p align="center">Simple Next.js boilerplate that uses <a href="https://flask.palletsprojects.com/">Flask</a> as the API backend.</p>
+Overview
 
-<br/>
+This application is an interactive visualization tool designed to display satellite trajectories and their relationship to Earth, powered by NASA Goddard Space Flight Center's SSC Web Services. Users can input parameters to view satellite positions in a 3D environment.
 
-## Introduction
+Features
 
-This is a hybrid Next.js + Python app that uses Next.js as the frontend and Flask as the API backend. One great use case of this is to write Next.js apps that use Python AI libraries on the backend.
+3D Satellite Visualization
+Real-time rendering of satellite positions using Three.js.
+Dynamic Earth and Moon with satellite orbits.
+Labels for satellites and locations of interest, such as NASA’s Goddard Space Flight Center.
+Satellite Descriptions
+Displays details about selected satellites:
+ACE: Observes particles from solar, interstellar, and galactic origins.
+WIND: Studies solar wind effects on Earth's magnetosphere.
+GOES-16 & GOES-17: Monitors weather phenomena and hazards across the Western Hemisphere (coming soon).
+Customizable Parameters
+Define start and end times for trajectory visualization.
+Choose coordinate systems (e.g., GSE, GEO) and resolution factors.
+Requirements
 
-## How It Works
+Frontend
+React with Next.js for dynamic UI.
+Three.js for 3D rendering.
+Tailwind CSS for responsive and modern UI design.
+Backend
+Flask for API integration with NASA’s SSC Web Services.
+Python with requests, Flask-CORS, and dotenv libraries.
+How It Works
 
-The Python/Flask server is mapped into to Next.js app under `/api/`.
+Frontend Input: Users select satellites, input time ranges, and define visualization parameters.
+Backend Query: Flask queries NASA’s SSC Web Services API to fetch satellite location data.
+3D Visualization: The frontend renders Earth, satellites, and labels using Three.js.
+Setup Instructions
 
-This is implemented using [`next.config.js` rewrites](https://github.com/vercel/examples/blob/main/python/nextjs-flask/next.config.js) to map any request to `/api/:path*` to the Flask API, which is hosted in the `/api` folder.
+1. Clone the Repository
+git clone https://github.com/nasa-goddard/space-app.git
+cd space-app
+2. Configure Backend
+Create a .env file in the project root and include your NASA API credentials:
 
-On localhost, the rewrite will be made to the `127.0.0.1:5328` port, which is where the Flask server is running.
+NASA_SSC_API_URL=https://sscweb.gsfc.nasa.gov/WS/sscr/2
+Install Python dependencies and run the Flask server:
 
-In production, the Flask server is hosted as [Python serverless functions](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python) on Vercel.
+# Create a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
-## Demo
+# Install dependencies
+pip install -r requirements.txt
 
-https://nextjs-flask-starter.vercel.app/
+# Start the Flask backend
+python app.py
+3. Configure Frontend
+Install Node.js dependencies and start the Next.js development server:
 
-## Deploy Your Own
-
-You can clone & deploy it to Vercel with one click:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Next.js%20Flask%20Starter&demo-description=Simple%20Next.js%20boilerplate%20that%20uses%20Flask%20as%20the%20API%20backend.&demo-url=https%3A%2F%2Fnextjs-flask-starter.vercel.app%2F&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F795TzKM3irWu6KBCUPpPz%2F44e0c6622097b1eea9b48f732bf75d08%2FCleanShot_2023-05-23_at_12.02.15.png&project-name=Next.js%20Flask%20Starter&repository-name=nextjs-flask-starter&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fnextjs-flask&from=vercel-examples-repo)
-
-## Developing Locally
-
-You can clone & create this repo with the following command
-
-```bash
-npx create-next-app nextjs-flask --example "https://github.com/vercel/examples/tree/main/python/nextjs-flask"
-```
-
-## Getting Started
-
-First, install the dependencies:
-
-```bash
 npm install
-# or
-yarn
-# or
-pnpm install
-```
-
-Then, run the development server:
-
-```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Usage
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Flask API
+The Flask server exposes the following endpoint:
 
-The Flask server will be running on [http://127.0.0.1:5328](http://127.0.0.1:5328) – feel free to change the port in `package.json` (you'll also need to update it in `next.config.js`).
+GET /api/get-satellite-locations:
+Accepts parameters such as observatories, start_time, end_time, and coordinate_system.
+Returns vertices and labels for visualization.
+Example Request
+curl -X GET "http://localhost:5328/api/get-satellite-locations?observatories=ace,wind&start_time=20240101T000000Z&end_time=20240101T010000Z&coordinate_system=GSE"
+Technologies Used
 
-## Learn More
+Frontend
+Next.js: React framework for rendering the UI.
+Three.js: For rendering 3D objects and animations.
+Tailwind CSS: Utility-first CSS framework for styling.
+Backend
+Flask: Lightweight Python framework for the API layer.
+NASA SSC Web Services: For satellite trajectory data.
+Python Libraries: requests, Flask-CORS, and dotenv.
+Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Frontend
+Deploy the Next.js app to platforms such as Vercel.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Flask Documentation](https://flask.palletsprojects.com/en/1.1.x/) - learn about Flask features and API.
+Backend
+Deploy the Flask API to serverless platforms like Vercel or AWS Lambda.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Acknowledgements
+
+Special thanks to:
+
+NASA Goddard Space Flight Center for providing SSC Web Services.
+Flask for enabling the backend infrastructure.
+Three.js for creating stunning 3D visualizations.
+This project demonstrates the integration of NASA's APIs with modern web technologies to create a visually engaging and informative satellite visualization experience.
