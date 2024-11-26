@@ -7,7 +7,7 @@ import axios from "axios";
   const availableSatellites = [
     { name: "ace", description: "The Advanced Composition Explorer (ACE) observes particles of solar, interstellar, interplanetary, and galactic origins." },
     { name: "wind", description: "The WIND spacecraft studies the solar wind and its impact on Earth's magnetosphere." },
-    { name: "more coming soon", description: "coming soon: GOES-17 and GOES-16. You can try but it's buggy." },
+    { name: "more coming soon", description: "coming soon: GOES-17 and GOES-16. Working through technical challenges" },
 
   ];
 
@@ -104,11 +104,11 @@ import axios from "axios";
               type="text"
               value={observatories}
               onChange={(e) => setObservatories(e.target.value)}
-              placeholder="e.g., ace,wind"
+              placeholder="e.g.use lower case, ace,wind"
               className="p-2 bg-gray-900 text-white border-gray-700 rounded w-full md:w-1/2"
             />
             <div className="mt-2">
-              <strong className="text-gray-300">Try these!</strong>
+              <strong className="text-gray-300">Try these! ( use lower case  )</strong>
               <ul className="text-gray-400 list-disc list-inside">
                 {availableSatellites.map((satellite, index) => (
                   <li key={index}>{satellite.name}</li>
